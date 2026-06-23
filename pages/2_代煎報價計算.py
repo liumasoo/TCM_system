@@ -27,7 +27,7 @@ price_dict = pd.Series(df_price.單價.values, index=df_price.藥名).to_dict()
 
 # --- 介面設計 ---
 if 'rows' not in st.session_state:
-    st.session_state.rows = 5
+    st.session_state.rows = 10
 
 st.subheader("處方內容")
 st.caption("💡 提示：在輸入框直接打字（如「黃」），即可快速過濾藥材。")
@@ -90,4 +90,5 @@ with res_col2:
 if st.button("🧹 清空重填"):
     for key in list(st.session_state.keys()):
         del st.session_state[key]
+        st.session_state.rows = 10 # 確保重置後依然維持預設的 10 列
     st.rerun()
